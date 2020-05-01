@@ -12,12 +12,14 @@ clc;
 close all;
 indice = 1;
 
-lee_archivos = dir('C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos aprendizaje\*.jpg'); %el formato de imagen puede ser modificado. 
-%lee_archivos = dir('C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos aprendizaje1\*.jpg'); %el formato de imagen puede ser modificado. 
+dir_actual = pwd;
+lee_archivos = dir('**\Fotos aprendizaje\*.jpg'); 
+
 excentricidad=zeros(1,length(lee_archivos));
 for i=1:length(lee_archivos)    %recorre número de archivos guardados en el directorio
     nombreFotoAprendizaje = lee_archivos(i).name; %Obtiene el nombre de los archivos
-    rutaAprendizaje='C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos aprendizaje\';
+    rutaAprendizaje = strcat(dir_actual, '\Fotos aprendizaje\');
+    %rutaAprendizaje='C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos aprendizaje\';
     %rutaAprendizaje='C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos aprendizaje1\'; %Recore el diretorio
     foto = imread(strcat(rutaAprendizaje,nombreFotoAprendizaje));% lee la primera imagen
     fotoBin = im2bw(foto); %procesa imagen a binaria
@@ -107,7 +109,9 @@ while 1
         break
     else
         nombreFotoPrueba = input('nombre de archivo: ','s'); %Obtiene el nombre de los archivos
-        rutaPrueba='C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos prueba\'; %Recore el diretorio
+        rutaPrueba = strcat(pwd, '\Fotos prueba\');
+        
+        %rutaPrueba='C:\Users\samir\Documents\Facultad\IA I\Proyecto Final IA I\Fotos prueba\'; %Recore el diretorio
         prueba = imread(strcat(rutaPrueba,nombreFotoPrueba));% lee la primera imagen
         pruebaBin = im2bw(prueba);
         %pruebaBin = im2bw(prueba,0.2); %procesa imagen a binaria
